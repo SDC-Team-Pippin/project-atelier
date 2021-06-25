@@ -18,7 +18,7 @@ const Photos = db.define('photos', {
       isInt: true,
     },
   },
-  body: {
+  url: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
