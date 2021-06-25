@@ -49,6 +49,7 @@ const Questions = db.define('questions', {
   reported: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
+    defaultValue: false,
     validate: {
       isInt: true,
     },
