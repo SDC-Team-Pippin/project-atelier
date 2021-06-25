@@ -23,11 +23,18 @@ db.sync()
   })
   .then((metadata) => {
     console.log(`${metadata[1].rowCount} photos added to database`);
+    // change big int to timestamp
     db.query('ALTER TABLE questions ALTER COLUMN date_written TYPE timestamp without time zone USING TO_TIMESTAMP(date_written / 1000);');
     db.query('ALTER TABLE answers ALTER COLUMN date_written TYPE timestamp without time zone USING TO_TIMESTAMP(date_written / 1000);');
+    // reset the id autoincrementer to the max id
+    db.query("SELECT setval('questions_id_seq', (SELECT MAX(id) FROM questions))");
+    db.query("SELECT setval('answers_id_seq', (SELECT MAX(id) FROM answers))");
+    db.query("SELECT setval('photos_id_seq', (SELECT MAX(id) FROM photos))");
+    // index the database with a hash table
+    db.query('CREATE INDEX questions_index ON questions USING hash(product_id);');
+    db.query('CREATE INDEX answers_index ON answers USING hash(question_id);');
+    db.query('CREATE INDEX photos_index ON photos USING hash(answer_id);');
   })
   .catch((err) => console.error(err));
 
-module.exports = {
-  db,
-};
+module.exports = db;

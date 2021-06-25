@@ -1,9 +1,8 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
-const dbName = 'atelier_qa';
-const db = new Sequelize(dbName, process.env.dbusername, process.env.dbpassword, {
-  host: 'localhost',
+const db = new Sequelize(process.env.dbName, process.env.dbUsername, process.env.dbPassword, {
+  host: process.env.dbHost,
   dialect: 'postgres',
   logging: false,
 });
