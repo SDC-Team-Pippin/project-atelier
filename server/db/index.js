@@ -8,7 +8,7 @@ Answer.hasMany(Photo, { foreignKey: 'answer_id' });
 Answer.belongsTo(Question, { foreignKey: 'question_id' });
 Question.hasMany(Answer, { foreignKey: 'question_id' });
 
-db.sync()
+db.sync({ force: true })
   .then(() => {
     console.log('db synced');
     return db.query("COPY questions FROM '/Users/alec/Downloads/questions.csv' DELIMITER ',' CSV HEADER;");
@@ -34,6 +34,11 @@ db.sync()
     db.query('CREATE INDEX questions_index ON questions USING hash(product_id);');
     db.query('CREATE INDEX answers_index ON answers USING hash(question_id);');
     db.query('CREATE INDEX photos_index ON photos USING hash(answer_id);');
+  })
+  .then(() => {
+    console.log('here');
+    db.query('ALTER TABLE questions ALTER COLUMN date_written SET DEFAULT CURRENT_TIMESTAMP(0);');
+    db.query('ALTER TABLE answers ALTER COLUMN date_written SET DEFAULT CURRENT_TIMESTAMP(0);');
   })
   .catch((err) => console.error(err));
 
