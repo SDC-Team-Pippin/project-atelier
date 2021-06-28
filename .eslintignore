@@ -1,2 +1,8 @@
 # Jest Configuration
 jest.config.js
+
+# Test files
+*.test.js
+
+# New Relic
+newrelic.js
