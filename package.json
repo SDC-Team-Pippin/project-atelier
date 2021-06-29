@@ -14,7 +14,7 @@
     ]
   },
   "scripts": {
-    "etl": "node ./server/db",
+    "etl": "node ./db",
     "start:dev": "npx nodemon ./server/index.js",
     "start:prod": "node ./server/index.js",
     "test": "jest"

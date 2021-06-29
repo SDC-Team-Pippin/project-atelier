@@ -108,3 +108,7 @@ yarn.lock
 
 # New Relic
 newrelic.js
+
+# PEM files
+atelier_qa.pem
+db.pem
