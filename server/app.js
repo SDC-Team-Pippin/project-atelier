@@ -17,8 +17,8 @@ const pool = new Pool({
 app.use(compression());
 app.use(express.json());
 // app.use(morgan('dev'));
-app.get('/loaderio-fdc27b7638806cd130eae20a5246b771/', (req, res) => {
-  res.send('loaderio-fdc27b7638806cd130eae20a5246b771');
+app.get('/loaderio-1d368991db6e203265ad48e28730cded/', (req, res) => {
+  res.send('loaderio-1d368991db6e203265ad48e28730cded');
 });
 
 // let's write some routes!

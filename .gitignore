@@ -112,3 +112,4 @@ newrelic.js
 # PEM files
 atelier_qa.pem
 db.pem
+sdc_nginx.pem
